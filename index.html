@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마케팅 실습용 랜딩페이지</title>
 
-    <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -22,34 +22,54 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2783123035179257&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-
+    
     <style>
-        body { font-family: sans-serif; line-height: 1.6; text-align: center; padding: 50px; }
-        .container { max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px; }
-        .button { display: inline-block; background: #1877F2; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px; cursor: pointer; border: none; font-size: 16px; }
-        .product-img { width: 100%; height: 200px; background: #eee; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+        body { font-family: sans-serif; line-height: 1.6; text-align: center; padding: 50px; background-color: #f9f9f9; }
+        .container { max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 30px; border-radius: 15px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .button { display: block; width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 8px; color: white; font-size: 16px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        
+        .btn-purchase { background: #1877F2; } /* 페이스북 블루 */
+        .btn-cart { background: #f1c40f; color: #333; } /* 골드 */
+        .btn-inquiry { background: #2ecc71; } /* 그린 */
+        
+        .product-img { width: 100%; height: 150px; background: #eee; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: #999; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🚀 마케팅 실습 페이지</h1>
-        <div class="product-img">제품 이미지 영역</div>
-        <p>이 페이지는 UTM 매개변수와 픽셀 이벤트를 테스트하기 위한 페이지입니다.</p>
+        <h1>🚀 마케팅 데이터 실습</h1>
+        <div class="product-img">실습용 상품 이미지</div>
+        <p>각 버튼을 눌러 Meta 이벤트 관리자에 데이터가 오는지 확인하세요.</p>
         
-        <button id="purchaseBtn" class="button">지금 구매하기 (Purchase 이벤트)</button>
+        <button id="purchaseBtn" class="button btn-purchase">지금 구매하기 (10,000원)</button>
+        <button id="cartBtn" class="button btn-cart">장바구니 담기 (5,000원)</button>
+        <button id="inquiryBtn" class="button btn-inquiry">1:1 문의하기</button>
     </div>
 
     <script>
-        // 버튼 클릭 시 Meta Pixel 'Purchase' 이벤트를 전송하는 예시
+        // 1. 구매 버튼 클릭 이벤트
         document.getElementById('purchaseBtn').addEventListener('click', function() {
-            // Meta Pixel이 설치되어 있다면 실행됨
             if (typeof fbq !== 'undefined') {
-                fbq('track', 'Purchase', {value: 10000, currency: 'KRW'});
-                alert('Purchase 이벤트가 Meta로 전송되었습니다!');
-            } else {
-                alert('픽셀 코드가 설치되지 않았습니다.');
-            }
+                fbq('track', 'Purchase', { value: 10000, currency: 'KRW' });
+                alert('구매(Purchase) 신호를 보냈습니다!');
+            } else { alert('픽셀 코드가 없습니다.'); }
+        });
+
+        // 2. 장바구니 버튼 클릭 이벤트
+        document.getElementById('cartBtn').addEventListener('click', function() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'AddToCart', { value: 5000, currency: 'KRW' });
+                alert('장바구니(AddToCart) 신호를 보냈습니다!');
+            } else { alert('픽셀 코드가 없습니다.'); }
+        });
+
+        // 3. 문의하기 버튼 클릭 이벤트
+        document.getElementById('inquiryBtn').addEventListener('click', function() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Contact');
+                alert('문의하기(Contact) 신호를 보냈습니다!');
+            } else { alert('픽셀 코드가 없습니다.'); }
         });
     </script>
 </body>
