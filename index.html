@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마케팅 실습용 랜딩페이지</title>
+
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2783123035179257');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2783123035179257&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; text-align: center; padding: 50px; }
+        .container { max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px; }
+        .button { display: inline-block; background: #1877F2; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px; cursor: pointer; border: none; font-size: 16px; }
+        .product-img { width: 100%; height: 200px; background: #eee; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🚀 마케팅 실습 페이지</h1>
+        <div class="product-img">제품 이미지 영역</div>
+        <p>이 페이지는 UTM 매개변수와 픽셀 이벤트를 테스트하기 위한 페이지입니다.</p>
+        
+        <button id="purchaseBtn" class="button">지금 구매하기 (Purchase 이벤트)</button>
+    </div>
+
+    <script>
+        // 버튼 클릭 시 Meta Pixel 'Purchase' 이벤트를 전송하는 예시
+        document.getElementById('purchaseBtn').addEventListener('click', function() {
+            // Meta Pixel이 설치되어 있다면 실행됨
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {value: 10000, currency: 'KRW'});
+                alert('Purchase 이벤트가 Meta로 전송되었습니다!');
+            } else {
+                alert('픽셀 코드가 설치되지 않았습니다.');
+            }
+        });
+    </script>
+</body>
+</html>
